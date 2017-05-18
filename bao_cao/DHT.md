@@ -28,7 +28,7 @@ khi một máy muốn tìm kiếm dữ liệu, yêu cầu tìm kiếm sẽ đư�
 
 Dựa vào các đặc điểm của một mạng ngang hàng không có cấu trúc, ta dễ dàng đưa ra các nhược điểm của chúng:   
 - Khi tìm kiếm dữ liệu, việc một máy phải gửi yêu cầu cho tất cả các máy mà nó liên kết làm cho chi phí băng thông gửi tới các máy là cao.
-- Vì mạng là là không có cấu trúc, nên nó không đảm bảo rằng việc tìm kiếm dữ liệu là thành công, vì nó không có mối tương quan giữa dữ liệu và máy.
+- Vì mạng là là không có cấu trúc, nên nó không đảm bảo rằng việc tìm kiếm dữ liệu là thành công, vì nó không có mối tương quan giữa dữ liệu và máy
 - Đối với dữ liệu được lưu bản sao trên nhiều máy, thì việc tìm kiếm dữ liệu thành công là khá cao, ngược lại, nếu dữ liệu chỉ lưu trên một vài máy, thì xác suất tìm thấy là rất nhỏ. hoặc có thể là không tìm thấy.
 ### b. Mạng Peer-To-Peer có cấu trúc
 Mạng Peer-To-Peer có cấu trúc khắc phục được các nhược điểm của mạng Peer-To-Peer không có cấu trúc bằng các sử dụng Hệ thống DHT( Distributed Hash Table ). Hệ thống này định nghĩa các liên kết giữa các node trong mạng theo một quy luật(thuật toán) nào đó, đồng thời xác định mỗi node trong mạng sẽ chịu trách nhiệm  đối với một phần dữ liệu có trong mạng.
@@ -83,7 +83,7 @@ Với sự lựa chọn là *Degree O(logn), route length O(logn)* là phổ bi�
 Chord là một giao thức sử dụng DHT nhằm mục đích tổ chức, tìm kiếm dữ liệu một cách phân tán tốt nhất.   
 Chord có những đặc điểm ưu thế của mình, có hai đặc điểm nổi bật đó là khả năng tìm kiếm dữ liệu nhanh và cân bằng tải giữa các node. Và có một đặc điểm quan trọng là sự phân phối các khóa tới các node trong mạng là tương đối đồng đều, đây là một hệ quả của việc sử dụng kỹ thuật *consistent hashing* trong việc cấp khóa cho các node.  
 Chord coi các khóa là các điểm trên vòng tròn, không gian khóa được chia thành nhiều cung tròn mà điểm cuối cùng là các định danh ID của các node. Mỗi node lưu trữ thông tin định tuyến tới các node khác trong bảng định tuyến gọi là finger table.    
-<img src="../Bao cao Chord/vongchord.png">   
+<img src="../Bao cao Chord/vongchord.PNG">   
 - Giao thức Chord hỗ trợ một hoạt động duy nhất: khi đưa ra một key, nó sẽ ánh xạ key đó vào một node (sử dụng Consistent hashing). Node đó sẽ lưu giá trị (value) cùng với key đó. Chord sử dụng kỹ thuật *consistent hashing* để cấp key cho các node, không những vậy, *consistent hashing* còn dùng để cân bằng tải các node mạng, mỗi node sẽ nhận được số lượng key gần bằng nhau, hay chuyển một số lượng key sang node khác khi có một node tham gia hoặc rời khỏi hệ thống.       
 #### 3.2 Mô hình mạng Chord   
 Chord được mô tả dưới dạng một vòng tròn và có không định danh m-bit, mạng Chord sẽ có thể chứa tối đa 2<sup>m</sup> node. Mỗi một node sẽ được gán một định danh là id, và các id được sắp xếp thành một vòng tròn theo thứ tự tăng dần theo chiều kim đồng hồ.   
@@ -108,13 +108,13 @@ Chord có những đặc điểm sau đây:
 #### 3.4 Finger table
 trong Chord thì mỗi node sẽ có một bảng Finger table để lưu giữ thông tin của các node hàng xóm của nó. một Finger table thì lưu giữ thông tin O(logN) node khác.   
 Trong một Finger table lưu trữ: chỉ mục, các id và các hàng xóm chịu trách nhiệm quản lý các id đó.
-<img src="../Bao cao Chord/finger1.png">   
+<img src="../Bao cao Chord/finger1.PNG">   
 - Tại mục thứ i (bắt đầu từ 0) trong finger table của một node p có lưu trữ giá trị id là: p + 2<sup>i-1</sup> và Successor của nó là successor(p + 2<sup>i</sup>).   
 Khi một node tham gia vào mạng, việc nó phải làm là sẽ tìm một định danh id và báo cho các node bên cạnh biết có sự tham gia của nó nhờ sử dụng một thuật toán là stabilization. các node Successor và Predecessor sẽ phải cập nhật thông tin về node mới tham gia vào mạng. Một phần khóa của Successor sẽ được chuyển sang node mới. Node mới tham gia cần phải tạo ra một bảng finger table và cập nhật các giá trị vào trong bảng, và đông thời các node trong mạng cần thường xuyên cập nhật lại thông tin về node hàng xóm cũng như cần phải cập nhật các mục trong bảng Finger table. 
 Khi một node rời khỏi mạng, nó cần phải thông báo cho các node bên cạnh để ổn định lại mạng, khi đó phần khóa của node rời khỏi mạng sẽ được chuyển sang cho Successor của nó. 
 #### 3.5 Tìm kiếm trong Chord
 Khi một node cần tìm dữ liệu của khóa k, thì node đó phải tìm kiếm node chứa khóa k đó, nếu như node ở xa vị trí so với node lưu khóa k, nó có thể dựa trên các node hàng xóm của nó thông quan bảng định tuyến (finger table) để định tuyến, từ đó dần dần nó sẽ tìm ra node chứa khóa k đó.   
-<img src="../Bao cao Chord/find.png">  
+<img src="../Bao cao Chord/find.PNG">  
 Giả sử rằng trên vòng tròn Chord có các node như trong hình vẽ, N8 cần tìm node chứa khóa k có giá trị là 54, Đầu tiên nó kiểm tra khóa k có nằm giữa nó với Successor không, nếu nằm giữa, thì Successor của N8 là node chứa dữ liệu của khóa k và là node nó cần tìm, Nếu không nó sẽ tìm trong bảng Finger table của chính nó mục thứ i trong sao cho giá trị : m = N8 + 2<sup>i</sup> <= k < N8 + 2<sup>i+1</sup>, trong hình trên node thỏa mãn là N42 (i=5) là successor(m), N8 sẽ gửi một yêu cầu tìm node chứa khóa k cho N42, khi đó N42 tiến hành giống như N8, và node tiếp theo sẽ là Node N51, và đến node 51, nó tìm ra node chịu trách nhiệm chứa khóa k là N56, và khi đó N56 sẽ được trả về cho N8.   
 
 
