@@ -8,8 +8,8 @@
 - Một mạng ngang hàng là một mạng mà tất cả các máy tham gia đều bình đẳng (gọi là Peer), một node trong mạng vừa đóng vai trò là client để tìm kiếm và lấy thông tin từ các node khác, vừa là server có nhiệm vụ lưu trữ dữ liệu và truyền dữ liệu cho các node khác trong mạng, và một điều đặc biệt là tất cả các máy tính trong một mạng đều tham gia đóng góp tài nguyên như: Băng thông, lưu trữ cũng như khả năng tính toán...
 - Mạng ngang hàng có rất nhiều ứng dụng, đặc biệt là Hệ thống chia sẻ tệp tin về âm thanh, hình ảnh, dữ liệu...
 điển hình như hệ thống mạng Napster, Gnutella hay Freenet....     
-### **Như vậy, so với mạng truyền thống (Client/Server) thì mạng peer-to-peer có đặc điểm nổi bật là gì** ????   
-<img src="../bao_cao/image/sosanh.png">  
+### **Như vậy, so với mạng truyền thống (Client/Server) thì mạng peer-to-peer có đặc điểm nổi bật là gì** ????    
+<img src="../bao_cao/image/sosanh.png">    
 
 Hình ảnh trên nói về sự so sánh hai cấu trúc mạng Client/Server và Peer-To-Peer.
 
