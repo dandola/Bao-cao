@@ -9,7 +9,7 @@
 - Mạng ngang hàng có rất nhiều ứng dụng, đặc biệt là Hệ thống chia sẻ tệp tin về âm thanh, hình ảnh, dữ liệu...
 điển hình như hệ thống mạng Napster, Gnutella hay Freenet....     
 ### **Như vậy, so với mạng truyền thống (Client/Server) thì mạng peer-to-peer có đặc điểm nổi bật là gì** ????    
-<img src="../bao_cao/image/sosanh.png">    
+<img src="../bao_cao/image/sosanh.PNG">    
 
 Hình ảnh trên nói về sự so sánh hai cấu trúc mạng Client/Server và Peer-To-Peer.
 
